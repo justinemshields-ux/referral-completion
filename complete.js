@@ -1,4 +1,4 @@
-const ZAPIER_COMPLETION_WEBHOOK = 'https://hooks.zapier.com/hooks/catch/26013950/ugj544z/';
+const ZAPIER_COMPLETION_WEBHOOK = 'https://hooks.zapier.com/hooks/catch/26013950/ugjg5lf/';
 
 // Get URL parameters
 const urlParams = new URLSearchParams(window.location.search);
