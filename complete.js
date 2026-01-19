@@ -27,23 +27,30 @@ document.getElementById('completionForm').addEventListener('submit', async funct
   errorDiv.style.display = 'none';
   
   try {
-    const completionData = {
-      patient_name: patientName,
-      patient_phone: patientPhoneFromURL || '',
-      status: status,
-      completion_notes: notes || 'No additional notes',
-      completed_at: new Date().toISOString()
-    };
-    
-    const response = await fetch(ZAPIER_COMPLETION_WEBHOOK, {
-      method: 'POST',
-      body: JSON.stringify(completionData)
-    });
-    
-    if (!response.ok) {
-      throw new Error('Failed to submit completion');
-    }
-    
+  const completionData = {
+    patient_name: patientName,
+    patient_phone: patientPhoneFromURL || '',
+    status: status,
+    completion_notes: notes || 'No additional notes',
+    completed_at: new Date().toISOString()
+  };
+  
+  console.log('Sending completion data:', completionData);
+  
+  const response = await fetch(ZAPIER_COMPLETION_WEBHOOK, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(completionData)
+  });
+  
+  console.log('Response:', response);
+  
+  if (!response.ok) {
+    throw new Error('Failed to submit completion');
+  }
+  
     document.getElementById('successMessage').style.display = 'block';
     document.getElementById('completionForm').style.display = 'none';
     document.querySelector('.info').style.display = 'none';
