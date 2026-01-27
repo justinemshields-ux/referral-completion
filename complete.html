@@ -2,166 +2,403 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete Referral</title>
+  <title>Complete Referral | Relay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      /* Relay Color System */
+      --relay-navy: #0F172A;
+      --relay-navy-light: #1E293B;
+      --relay-slate: #475569;
+      --relay-slate-light: #64748B;
+      --relay-border: #E2E8F0;
+      --relay-bg: #F8FAFC;
+      --relay-white: #FFFFFF;
+      
+      /* Accent Colors */
+      --relay-teal: #00A896;
+      --relay-teal-dark: #009485;
+      --relay-teal-light: #CCFBF1;
+      --relay-teal-subtle: #F0FDFA;
+      
+      /* Status Colors */
+      --relay-success: #059669;
+      --relay-success-bg: #ECFDF5;
+      --relay-error: #DC2626;
+      --relay-error-bg: #FEF2F2;
+      --relay-warning: #D97706;
+      --relay-warning-bg: #FFFBEB;
+      --relay-info: #0284C7;
+      --relay-info-bg: #F0F9FF;
+      
+      /* Typography */
+      --font-display: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+      
+      /* Border Radius */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: var(--font-body);
+      margin: 0;
+      padding: 0;
+      background: var(--relay-bg);
       min-height: 100vh;
+      color: var(--relay-navy);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-md) var(--space-2xl);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--relay-teal);
+      border-radius: var(--radius-md);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0;
-      padding: 20px;
     }
-    .container {
-      background: white;
-      border-radius: 12px;
-      padding: 40px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      max-width: 500px;
-      width: 100%;
+
+    .logo-mark svg {
+      width: 20px;
+      height: 20px;
+      color: white;
     }
-    h2 {
-      color: #667eea;
-      margin: 0 0 10px 0;
-      font-size: 28px;
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--relay-navy);
+      letter-spacing: -0.02em;
     }
+
+    /* Card */
+    .card {
+      background: var(--relay-white);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl) var(--space-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--relay-border);
+      flex: 1;
+    }
+
+    .title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 0 var(--space-sm);
+      color: var(--relay-navy);
+      letter-spacing: -0.02em;
+    }
+
     .subtitle {
-      color: #666;
-      margin: 0 0 30px 0;
-      font-size: 14px;
+      margin: 0 0 var(--space-lg);
+      font-size: 15px;
+      color: var(--relay-slate);
+      line-height: 1.6;
     }
+
+    /* Patient Info Box */
+    .patient-info {
+      background: var(--relay-teal-subtle);
+      border: 1px solid var(--relay-teal-light);
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-lg);
+      font-size: 14px;
+      color: var(--relay-navy);
+    }
+
+    .patient-info strong {
+      color: var(--relay-teal-dark);
+      font-weight: 600;
+    }
+
+    /* Info Box */
+    .info-box {
+      background: var(--relay-info-bg);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-lg);
+      font-size: 14px;
+      color: var(--relay-info);
+      line-height: 1.5;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: var(--space-md);
+    }
+
     label {
       display: block;
-      font-weight: 600;
-      color: #333;
-      margin: 20px 0 8px 0;
       font-size: 14px;
+      font-weight: 600;
+      color: var(--relay-navy);
+      margin-bottom: var(--space-xs);
     }
-    input, select, textarea {
+
+    .required {
+      color: var(--relay-error);
+      margin-left: 2px;
+    }
+
+    input,
+    select,
+    textarea {
       width: 100%;
-      padding: 12px;
-      border: 2px solid #e0e0e0;
-      border-radius: 8px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--relay-border);
       font-size: 15px;
-      font-family: inherit;
-      box-sizing: border-box;
-      transition: border-color 0.3s;
+      font-family: var(--font-body);
+      background: var(--relay-white);
+      color: var(--relay-navy);
+      transition: all 0.15s ease;
     }
-    input:focus, select:focus, textarea:focus {
+
+    input::placeholder,
+    select::placeholder,
+    textarea::placeholder {
+      color: var(--relay-slate-light);
+    }
+
+    input:hover,
+    select:hover,
+    textarea:hover {
+      border-color: #CBD5E1;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
       outline: none;
-      border-color: #667eea;
+      border-color: var(--relay-teal);
+      box-shadow: 0 0 0 3px rgba(0, 168, 150, 0.12);
     }
+
     input:disabled {
-      background: #f5f5f5;
-      color: #666;
+      background: var(--relay-bg);
+      color: var(--relay-slate);
     }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 40px;
+    }
+
     textarea {
       resize: vertical;
       min-height: 100px;
+      line-height: 1.5;
     }
-    button {
-      background: #667eea;
-      color: white;
-      border: none;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 25px;
+
+    /* Button */
+    .btn-primary {
       width: 100%;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: #5568d3;
-    }
-    button:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
-    .success {
-      display: none;
-      background: #34a853;
-      color: white;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-      margin-top: 20px;
+      margin-top: var(--space-md);
+      padding: 14px var(--space-lg);
+      border-radius: var(--radius-md);
+      border: none;
+      font-size: 15px;
       font-weight: 600;
-    }
-    .error {
-      display: none;
-      background: #ea4335;
+      font-family: var(--font-body);
       color: white;
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 15px;
+      background: var(--relay-teal);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--relay-teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 168, 150, 0.3);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary:disabled {
+      background: var(--relay-slate-light);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Status Messages */
+    .status {
+      margin-top: var(--space-md);
       font-size: 14px;
+      line-height: 1.5;
+      padding: 14px var(--space-md);
+      border-radius: var(--radius-md);
+      display: none;
     }
-    .info {
-      background: #f0f0f0;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 25px;
-      font-size: 14px;
-      color: #666;
+
+    .status.success {
+      display: block;
+      background: var(--relay-success-bg);
+      color: var(--relay-success);
+      border: 1px solid rgba(5, 150, 105, 0.2);
     }
-    .required {
-      color: #ea4335;
+
+    .status.error {
+      display: block;
+      background: var(--relay-error-bg);
+      color: var(--relay-error);
+      border: 1px solid rgba(220, 38, 38, 0.2);
     }
-    .patient-info {
-      background: #e8eaf6;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      font-size: 14px;
+
+    /* Footer */
+    .footer {
+      margin-top: var(--space-lg);
+      padding: var(--space-md);
+      text-align: center;
     }
-    .patient-info strong {
-      color: #667eea;
+
+    .footer-note {
+      font-size: 13px;
+      color: var(--relay-slate-light);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .page {
+        padding: var(--space-md) var(--space-md) var(--space-xl);
+      }
+
+      .card {
+        padding: var(--space-lg) var(--space-md);
+      }
+
+      .title {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h2>Complete Referral</h2>
-    <p class="subtitle">Mark this referral as completed</p>
-    
-    <div class="patient-info" id="patientInfo" style="display:none;">
-      <strong>Patient:</strong> <span id="displayPatientName"></span>
+  <div class="page">
+    <!-- Header with Relay Logo -->
+    <div class="header">
+      <div class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 12 7 12 10 6 14 18 17 12 21 12"/>
+          </svg>
+        </div>
+        <span class="logo-text">Relay</span>
+      </div>
     </div>
-    
-    <div class="info">
-      Please complete this form to notify the referring doctor that the appointment has been completed.
+
+    <!-- Main Card -->
+    <div class="card">
+      <h1 class="title">Complete Referral</h1>
+      <p class="subtitle">
+        Mark this referral as completed and notify the referring doctor.
+      </p>
+
+      <div class="patient-info" id="patientInfo" style="display:none;">
+        <strong>Patient:</strong> <span id="displayPatientName"></span>
+      </div>
+
+      <div class="info-box">
+        Please complete this form to notify the referring doctor that the appointment has been completed.
+      </div>
+
+      <form id="completionForm">
+        <div class="form-group">
+          <label for="patientName">Patient name<span class="required">*</span></label>
+          <input id="patientName" type="text" name="patientName" required placeholder="Enter patient name">
+        </div>
+
+        <div class="form-group">
+          <label for="status">Appointment status<span class="required">*</span></label>
+          <select id="status" name="status" required>
+            <option value="">Select status...</option>
+            <option value="Completed">Completed – Patient Seen</option>
+            <option value="No Show">No Show – Patient Did Not Attend</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Completion notes (optional)</label>
+          <textarea id="notes" name="notes" placeholder="Add any relevant notes about the appointment..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submitBtn">Submit Completion</button>
+      </form>
+
+      <div id="successMessage" class="status"></div>
+      <div id="errorMessage" class="status"></div>
     </div>
-    
-    <form id="completionForm">
-      <label>Patient Name <span class="required">*</span></label>
-      <input type="text" id="patientName" required placeholder="Enter patient name">
-      
-      <label>Appointment Status <span class="required">*</span></label>
-      <select id="status" required>
-        <option value="">Select status...</option>
-        <option value="Completed">Completed - Patient Seen</option>
-        <option value="No Show">No Show - Patient Did Not Attend</option>
-        <option value="Cancelled">Cancelled</option>
-      </select>
-      
-      <label>Completion Notes</label>
-      <textarea id="notes" placeholder="Optional: Add any relevant notes about the appointment..."></textarea>
-      
-      <button type="submit" id="submitBtn">Submit Completion</button>
-    </form>
-    
-    <div id="successMessage" class="success">
-      ✓ Referral marked as complete! The referring doctor has been notified.
+
+    <!-- Footer -->
+    <div class="footer">
+      <p class="footer-note">
+        The referring doctor will be automatically notified of this update.
+      </p>
     </div>
-    
-    <div id="errorMessage" class="error"></div>
   </div>
-  
+
   <script src="complete.js"></script>
 </body>
 </html>
